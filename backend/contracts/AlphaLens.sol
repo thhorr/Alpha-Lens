@@ -44,7 +44,7 @@ contract AlphaLens {
      */
     function stake(uint256 _predictionId, bool _agree) external payable {
         require(_predictionId < predictions.length, "Invalid prediction ID");
-        require(msg.value > 0, "Stake amount must be greater than 0");
+        require(msg.value >= 0.01 ether, "Stake amount must be at least 0.01 ETH");
 
         Prediction storage prediction = predictions[_predictionId];
         require(!prediction.resolved, "Prediction already resolved");
