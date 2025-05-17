@@ -29,7 +29,6 @@ type HomeProps = {
 };
 
 export const Home: React.FC<HomeProps> = ({
-  setActiveTab,
   onPostPrediction,
   predictions,
   userAddress,
