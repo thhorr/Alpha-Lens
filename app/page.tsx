@@ -28,8 +28,11 @@ export default function App() {
   const { setFrameReady, isFrameReady, context } = useMiniKit();
   const [frameAdded, setFrameAdded] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
-  const [predictions, setPredictions] = useState<{ id: number; text: string; agrees: number; disagrees: number }[]>([]); // State to store predictions
-
+  const [predictions, setPredictions] = useState<{ id: number; text: string; agrees: number; disagrees: number }[]>([]);
+  const userAddress =
+  context && "address" in context && typeof context.address === "string"
+    ? context.address
+    : null;
   const addFrame = useAddFrame();
   const openUrl = useOpenUrl();
 
@@ -107,6 +110,7 @@ export default function App() {
               setActiveTab={setActiveTab}
               onPostPrediction={handlePostPrediction}
               predictions={predictions}
+              userAddress={userAddress}
             />
           )}
           {activeTab === "features" && <Features setActiveTab={setActiveTab} />}
